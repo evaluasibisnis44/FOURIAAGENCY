@@ -1,0 +1,199 @@
+{
+  "exportType": "initial-reference-data",
+  "notLiveBackup": true,
+  "description": "Data awal quotation dan budget contoh. Tidak berisi transaksi situs live atau file bukti.",
+  "records": [
+    {
+      "id": "batavia",
+      "kind": "client",
+      "clientId": "batavia",
+      "data": {
+        "name": "Batavia Whisky",
+        "contact": "",
+        "email": "",
+        "company": "",
+        "status": "Aktif",
+        "notes": "Kontrak November 2026–Januari 2027. Rp17.000.000 per bulan. Pembayaran aktual belum dicatat."
+      },
+      "version": 1
+    },
+    {
+      "id": "mureh",
+      "kind": "client",
+      "clientId": "mureh",
+      "data": {
+        "name": "Outlet Minuman Mureh",
+        "contact": "",
+        "email": "",
+        "company": "",
+        "status": "Aktif",
+        "notes": "Quotation Rp5.000.000, full payment. Add-on tambahan produksi Rp1.000.000 di luar paket."
+      },
+      "version": 1
+    },
+    {
+      "id": "batavia-2026-11",
+      "kind": "period",
+      "clientId": "batavia",
+      "data": {
+        "month": "2026-11",
+        "budget": 17000000,
+        "reels": 8,
+        "feeds": 7,
+        "stories": 0,
+        "productions": 0,
+        "events": 1,
+        "due": "2026-11-01",
+        "notes": "15 konten per bulan; 1 event visit. Jadwal jatuh tempo awal bulan dapat disesuaikan."
+      },
+      "version": 1
+    },
+    {
+      "id": "batavia-2026-12",
+      "kind": "period",
+      "clientId": "batavia",
+      "data": {
+        "month": "2026-12",
+        "budget": 17000000,
+        "reels": 8,
+        "feeds": 7,
+        "stories": 0,
+        "productions": 0,
+        "events": 1,
+        "due": "2026-12-01",
+        "notes": "15 konten per bulan; 1 event visit. Jadwal jatuh tempo awal bulan dapat disesuaikan."
+      },
+      "version": 1
+    },
+    {
+      "id": "batavia-2027-01",
+      "kind": "period",
+      "clientId": "batavia",
+      "data": {
+        "month": "2027-01",
+        "budget": 17000000,
+        "reels": 8,
+        "feeds": 7,
+        "stories": 0,
+        "productions": 0,
+        "events": 1,
+        "due": "2027-01-01",
+        "notes": "15 konten per bulan; 1 event visit. Jadwal jatuh tempo awal bulan dapat disesuaikan."
+      },
+      "version": 1
+    },
+    {
+      "id": "mureh-2026-10",
+      "kind": "period",
+      "clientId": "mureh",
+      "data": {
+        "month": "2026-10",
+        "budget": 5000000,
+        "reels": 15,
+        "feeds": 0,
+        "stories": 8,
+        "productions": 1,
+        "events": 0,
+        "due": "2026-10-14",
+        "notes": "Periode Oktober untuk pencatatan awal quotation; silakan sesuaikan tanggal proyek."
+      },
+      "version": 1
+    },
+    {
+      "id": "budget-example-0",
+      "kind": "expense",
+      "clientId": "batavia",
+      "data": {
+        "month": "2026-11",
+        "date": "2026-11-01",
+        "category": "Produksi",
+        "detail": "Videographer / Photo",
+        "planned": 3500000,
+        "actual": 0,
+        "vendor": "",
+        "notes": "Rencana budgeting dari gambar referensi. Bukan pengeluaran aktual."
+      },
+      "version": 1
+    },
+    {
+      "id": "budget-example-1",
+      "kind": "expense",
+      "clientId": "batavia",
+      "data": {
+        "month": "2026-11",
+        "date": "2026-11-01",
+        "category": "Talent",
+        "detail": "Talent",
+        "planned": 700000,
+        "actual": 0,
+        "vendor": "",
+        "notes": "Rencana budgeting dari gambar referensi. Bukan pengeluaran aktual."
+      },
+      "version": 1
+    },
+    {
+      "id": "budget-example-2",
+      "kind": "expense",
+      "clientId": "batavia",
+      "data": {
+        "month": "2026-11",
+        "date": "2026-11-01",
+        "category": "Produksi",
+        "detail": "Graphic Designer",
+        "planned": 700000,
+        "actual": 0,
+        "vendor": "",
+        "notes": "Rencana budgeting dari gambar referensi. Bukan pengeluaran aktual."
+      },
+      "version": 1
+    },
+    {
+      "id": "budget-example-3",
+      "kind": "expense",
+      "clientId": "batavia",
+      "data": {
+        "month": "2026-11",
+        "date": "2026-11-01",
+        "category": "Produksi",
+        "detail": "Video Editor",
+        "planned": 800000,
+        "actual": 0,
+        "vendor": "",
+        "notes": "Rencana budgeting dari gambar referensi. Bukan pengeluaran aktual."
+      },
+      "version": 1
+    },
+    {
+      "id": "budget-example-4",
+      "kind": "expense",
+      "clientId": "batavia",
+      "data": {
+        "month": "2026-11",
+        "date": "2026-11-01",
+        "category": "Lainnya",
+        "detail": "Account Executive",
+        "planned": 1200000,
+        "actual": 0,
+        "vendor": "",
+        "notes": "Rencana budgeting dari gambar referensi. Bukan pengeluaran aktual."
+      },
+      "version": 1
+    },
+    {
+      "id": "budget-example-5",
+      "kind": "expense",
+      "clientId": "batavia",
+      "data": {
+        "month": "2026-11",
+        "date": "2026-11-01",
+        "category": "Produksi",
+        "detail": "Visit event",
+        "planned": 1000000,
+        "actual": 0,
+        "vendor": "",
+        "notes": "Rencana budgeting dari gambar referensi. Bukan pengeluaran aktual."
+      },
+      "version": 1
+    }
+  ]
+}
