@@ -5,6 +5,10 @@ export async function POST(request:Request){try{
  const {db,user}=await authorize(request);const b:any=await request.json();if(!schemas[b.kind])throw new Error('Jenis data tidak valid');
  const data=schemas[b.kind].parse(b.data);const id=b.id||crypto.randomUUID();const clientId=b.kind==='client'?id:b.kind==='bank'?'agency':b.clientId;
  if(!['client','bank'].includes(b.kind)&&!await db.prepare("SELECT id FROM records WHERE id=? AND kind='client'").bind(clientId).first())throw new Error('Klien tidak ditemukan');
+ if(b.kind==='contentReport'){
+ const reports=await db.prepare("SELECT id,payload FROM records WHERE kind='contentReport' AND client_id=? AND id<>?").bind(clientId,id).all();
+ if(reports.results.some((r:any)=>{const p=JSON.parse(r.payload);return p.month===data.month&&p.platform===data.platform}))throw new Error('Laporan platform untuk bulan ini sudah ada. Edit laporan yang tersedia.');
+ }
  if(b.kind==='period'){
  const periods=await db.prepare("SELECT id,payload FROM records WHERE kind='period' AND client_id=? AND id<>?").bind(clientId,id).all();
  if(periods.results.some((r:any)=>JSON.parse(r.payload).month===data.month))throw new Error('Periode untuk klien ini sudah ada. Edit periode yang tersedia.');

@@ -20,3 +20,12 @@ export function referenceQuotation(clientId:string):Row|null{
  if(clientId==='mureh')return {id:'reference-mureh',kind:'document',clientId,version:1,data:{...common,number:'Referensi Minuman Mureh · terakhir',terms:'Full payment (100%).',notes:'Add-on opsional: tambahan produksi Rp1.000.000, di luar total.',items:[{description:'Social Media Management Instagram',detail:'Copywriting dan brief: 15 Reels + 8 Instagram Stories; admin publishing dan DM; optimasi landing page dan bio; 3 kali revisi minor.',qty:1,price:2500000},{description:'Production',detail:'1 kali produksi untuk video shoot, editing, dan desain.',qty:1,price:1500000},{description:'Talent',detail:'2 talent',qty:1,price:1000000}]}};
  return null;
 }
+
+// Invoice items are the agreed net fee. Gross-up keeps that fee intact after withholding.
+export function invoiceTotals(document:{type?:string;taxMode?:string;items:Pick<LineItem,'qty'|'price'>[]}){
+ const subtotal=Math.round(document.items.reduce((sum,item)=>sum+item.qty*item.price,0));
+ const grossUp=document.type==='Invoice'&&document.taxMode==='pph23_gross_up';
+ const gross=grossUp?Math.round(subtotal/0.98):subtotal;
+ const withholding=grossUp?Math.round(gross*0.02):0;
+ return {subtotal,grossUp,gross,allowance:gross-subtotal,withholding,net:gross-withholding};
+}

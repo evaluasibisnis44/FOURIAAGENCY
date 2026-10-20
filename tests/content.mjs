@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {schemas} from '../lib/validation.ts';import {contentStats,monthCells,shiftMonth,scheduled,channel,hasMetrics} from '../lib/content.ts';
+const legacy=schemas.content.parse({month:'2026-11',title:'Legacy',type:'Reels',status:'Ide',due:'2026-11-01'});
+assert.equal(legacy.platform,'Instagram');assert.equal(legacy.reach,null);assert.equal(hasMetrics({data:legacy}),false);assert.equal(scheduled({data:legacy}),'2026-11-01');
+assert.equal(schemas.content.safeParse({...legacy,publishTime:'25:00'}).success,false);assert.equal(schemas.content.safeParse({...legacy,canvaUrl:'javascript:alert(1)'}).success,false);assert.equal(schemas.content.safeParse({...legacy,reach:-1}).success,false);
+const row=d=>({id:crypto.randomUUID(),kind:'content',clientId:'qa',version:1,data:{...legacy,...d}});
+const a=row({platform:'Instagram',views:1000,reach:500,likes:20,comments:5,shares:3,saves:2,followersGained:4,status:'Terbit',publishDate:'2026-11-02'}),b=row({platform:'TikTok',views:2000,reach:1000,likes:50,comments:5,shares:4,saves:1,followersGained:10});
+const n=contentStats([a,b,row({})]);assert.equal(n.count,3);assert.equal(n.measured,2);assert.equal(n.published,1);assert.equal(n.total.views,3000);assert.equal(n.total.reach,1500);assert.equal(n.total.followersGained,14);assert.equal(n.engagement,6);assert.equal(channel(b),'TikTok');assert.equal(scheduled(a),'2026-11-02');
+assert.equal(contentStats([row({views:0})]).coverage.views,1);assert.equal(contentStats([row({likes:1})]).coverage.views,0);assert.equal(contentStats([row({reach:0,likes:0,comments:0,shares:0,saves:0})]).engagement,null);
+assert.equal(monthCells('2028-02').filter(Boolean).length,29);assert.equal(monthCells('2026-11').filter(Boolean).length,30);assert.equal(shiftMonth('2026-12',1),'2027-01');assert.equal(shiftMonth('2027-01',-1),'2026-12');
+const report=schemas.contentReport.parse({month:'2026-11',platform:'TikTok',followersStart:1000,followersEnd:900});assert.equal(report.followersEnd-report.followersStart,-100);
+console.log('PASS: legacy compatibility, missing vs zero metrics, platform dates, combined reach/engagement, followers, date rollover, calendar and unsafe-link rejection.');
